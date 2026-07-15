@@ -307,17 +307,18 @@ class InferenceDataset(Dataset):
         features.update(structure_features)
 
         # MSA features
-        msa_features = self.create_msa_features(
-            query, preprocessed_atom_array, n_tokens
-        )
-        features.update(msa_features)
+        if query.use_msas:
+            msa_features = self.create_msa_features(
+                query, preprocessed_atom_array, n_tokens
+            )
+            features.update(msa_features)
 
         # Template features
-        template_features = self.create_template_features(
-            query, preprocessed_atom_array, n_tokens
-        )
-        features.update(template_features)
-
+        if query.use_templates:
+            template_features = self.create_template_features(
+                query, preprocessed_atom_array, n_tokens
+            )
+            features.update(template_features)
         return features
 
     def __getitem__(

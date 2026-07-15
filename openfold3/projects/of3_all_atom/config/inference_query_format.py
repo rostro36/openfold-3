@@ -118,6 +118,7 @@ class Query(BaseModel):
     use_paired_msas: bool = True
     use_main_msas: bool = True
     covalent_bonds: list[Bond] | None = None
+    use_templates: bool = True
 
 
 class InferenceQuerySet(BaseModel):
